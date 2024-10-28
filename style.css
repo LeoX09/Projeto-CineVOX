@@ -1,0 +1,88 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(to bottom, #707070, #444444);
+}
+
+/* Ajusta o navbar para ficar fixo no topo */
+#navbar {
+    margin: 0;
+    padding: 10px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    position: fixed;
+    z-index: 2; /* Define a navbar sobre a sidebar */
+}
+
+/* Estilo para a navbar transparente */
+.navbar {
+    background-color: rgba(0, 0, 0, 0) !important; /* Transparente */
+    transition: background-color 0.5s; /* Transição suave */
+}
+
+/* Esta classe será adicionada via JavaScript */
+.navbar-scrolled {
+    background-color: #171717 !important; /* Escurece a navbar */
+}
+
+/* Estilo para o ícone de pesquisa */
+.input {
+    position: relative; /* Para o posicionamento do ícone */
+}
+
+.input .bi {
+    position: absolute;
+    right: 20px; /* Posição à direita do input */
+    top: 50%; /* Centraliza verticalmente */
+    transform: translateY(-50%); /* Ajuste fino para centralizar */
+    color: red; /* Cor do ícone */
+    pointer-events: none; /* O ícone não captura eventos de clique */
+    transition: opacity 0.3s; /* Transição suave para o ícone */
+    opacity: 0; /* Começa invisível */
+}
+
+.input:focus-within .bi {
+    opacity: 1; /* Torna o ícone visível ao focar no input */
+}
+
+/* Estilo do Carrossel */
+#movieCarousel {
+    width: auto;
+    margin: auto; /* Centraliza o carrossel e adiciona margem superior */
+    overflow: hidden; /* Esconde partes das imagens que saem da área */
+}
+
+.carousel-item img {
+    height: 450px; /* Altura fixa para todas as imagens */
+    width: 100%;
+    object-fit: fill; /* Corta as imagens para preencher o espaço sem distorcer */
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0); /* Fundo semitransparente para os ícones */
+}
+
+.carousel-control-prev-icon:focus,
+.carousel-control-next-icon:focus {
+    outline: none; /* Remove o contorno de foco */
+}
+
+/* Estilos adicionais para o input */
+#search-input {
+    border: 2px solid #da00372b; /* Cor da borda */
+    border-radius: 20px; /* Bordas arredondadas */
+    padding: 10px 20px; /* Espaçamento interno */
+    transition: border-color 0.3s; /* Transição suave */
+    padding-right: 30px;
+}
+
+/* Efeito de foco */
+#search-input:focus {
+    border-color: #DA0037; /* Muda a cor da borda ao focar */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Adiciona uma sombra */
+    outline: none; /* Remove a borda padrão do foco */
+}

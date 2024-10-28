@@ -1,0 +1,77 @@
+#serach-result {
+
+}
+
+#movie-container {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.movie-card {
+    position: relative;
+    display: flex; /* Garante que o card seja flexível */
+    flex-direction: column; /* Organiza o conteúdo em coluna */
+    border: 2px solid red;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.2s;
+    cursor: pointer;
+    width: calc(25% - 10px);
+    height: 400px;
+    margin: 5px;
+}
+
+.movie-card:hover {
+    transform: scale(1.01);
+}
+
+.movie-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+
+.movie-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px;
+    display: none; /* Oculta inicialmente */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.movie-card:hover .movie-info {
+    display: flex;
+}
+
+.synopsis, .rating {
+    margin: 5px 0;
+    font-size: 12px;
+    line-height: 1.2;
+}
+
+/* Responsividade para 4 cards por linha */
+@media (min-width: 768px) {
+    .movie-card {
+        flex: 1 1 calc(25% - 10px);
+    }
+}
+
+/* Ajuste para 2 cards por linha em telas menores */
+@media (max-width: 767px) {
+    .movie-card {
+        flex: 1 1 calc(50% - 10px);
+    }
+}
