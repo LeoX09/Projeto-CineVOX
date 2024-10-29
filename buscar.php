@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <title>CineVOX - Filmes Populares</title>
+    <title>CineVOX - Buscar Filmes</title>
     <link rel="stylesheet" href="css/cards.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="shortcut icon" href="img/icon.png" type="image/x-icon">
@@ -13,7 +13,6 @@
 </head>
 
 <body>
-    
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="navbar">
         <a class="navbar-brand" href="index.php">
@@ -57,34 +56,27 @@
             <?php
             include 'config.php';
 
-            function fetchMovies()
-            {
-                $url = TMDB_API_POPULAR . '?api_key=' . TMDB_API_KEY;
+            if (isset($_GET['query'])) {
+                $query = urlencode($_GET['query']);
+                $url = "https://api.themoviedb.org/3/search/movie?api_key=" . TMDB_API_KEY . "&query=" . $query . "&language=pt-BR";
                 $response = file_get_contents($url);
+                $movies = json_decode($response, true);
 
-                if ($response === false) {
-                    echo "Erro ao buscar filmes.";
-                    return [];
-                }
-
-                return json_decode($response, true);
-            }
-
-            $movies = fetchMovies();
-            if (empty($movies['results'])) {
-                echo "Nenhum filme encontrado.";
-            } else {
-                foreach ($movies['results'] as $movie): ?>
-                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                        <div class="movie-card" onclick="window.location.href='info_filmes.php?id=<?php echo $movie['id']; ?>'">
-                            <img src="https://image.tmdb.org/t/p/w500<?php echo $movie['poster_path']; ?>" alt="<?php echo $movie['title']; ?>">
-                            <div class="movie-info">
-                                <p class="synopsis">Sinopse: <?php echo $movie['overview']; ?></p>
-                                <p class="rating">Nota: <?php echo $movie['vote_average']; ?></p>
+                if (empty($movies['results'])) {
+                    echo "<p>Nenhum filme encontrado para sua pesquisa.</p>";
+                } else {
+                    foreach ($movies['results'] as $movie): ?>
+                        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                            <div class="movie-card" onclick="window.location.href='info_filmes.php?id=<?php echo $movie['id']; ?>'">
+                                <img src="https://image.tmdb.org/t/p/w500<?php echo $movie['poster_path']; ?>" alt="<?php echo $movie['title']; ?>">
+                                <div class="movie-info">
+                                    <p class="synopsis">Sinopse: <?php echo $movie['overview']; ?></p>
+                                    <p class="rating">Nota: <?php echo $movie['vote_average']; ?></p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-            <?php endforeach;
+                    <?php endforeach;
+                }
             }
             ?>
         </div>

@@ -48,29 +48,6 @@ body {
     opacity: 1; /* Torna o ícone visível ao focar no input */
 }
 
-/* Estilo do Carrossel */
-#movieCarousel {
-    width: auto;
-    margin: auto; /* Centraliza o carrossel e adiciona margem superior */
-    overflow: hidden; /* Esconde partes das imagens que saem da área */
-}
-
-.carousel-item img {
-    height: 450px; /* Altura fixa para todas as imagens */
-    width: 100%;
-    object-fit: fill; /* Corta as imagens para preencher o espaço sem distorcer */
-}
-
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-    background-color: rgba(0, 0, 0, 0); /* Fundo semitransparente para os ícones */
-}
-
-.carousel-control-prev-icon:focus,
-.carousel-control-next-icon:focus {
-    outline: none; /* Remove o contorno de foco */
-}
-
 /* Estilos adicionais para o input */
 #search-input {
     border: 2px solid #da00372b; /* Cor da borda */
