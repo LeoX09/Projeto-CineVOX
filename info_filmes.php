@@ -2,10 +2,10 @@
 include 'config.php'; // Importa o arquivo de configuração
 
 if (isset($_GET['id'])) {
-    $id_filme = intval($_GET['id']); // Garante que o ID seja um número inteiro para evitar erros
+    $id_filme = intval($_GET['id']); // Garante que o ID seja um número inteiro
 
     // Montando a URL corretamente
-    $url = "https://api.themoviedb.org/3/movie/$id_filme?api_key=" . TMDB_API_KEY . "&append_to_response=credits,images&language=pt-BR";
+    $url = "https://api.themoviedb.org/3/movie/$id_filme?api_key=" . TMDB_API_KEY . "&append_to_response=videos,credits,images,reviews&language=pt-BR";
 
     // Fazendo a requisição
     $response = file_get_contents($url);
@@ -42,6 +42,24 @@ if (isset($_GET['id'])) {
             "War" => "Guerra",
             "Western" => "Faroeste",
         ];
+
+        // Obtendo a chave do trailer (legenda)
+        $trailerKey = '';
+        foreach ($filme['videos']['results'] as $video) {
+            if ($video['site'] === 'YouTube' && $video['type'] === 'Trailer') {
+                // Verifica se a chave 'language' existe ou se é 'en' (legendado)
+                if (!isset($video['language']) || $video['language'] === 'en') {
+                    $trailerKey = $video['key'];
+                    break;
+                }
+            }
+        }
+
+        // Obtendo a descrição detalhada
+        $descricaoDetalhada = htmlspecialchars($filme['overview']);
+
+        // Obtendo críticas
+        $criticas = $filme['reviews']['results'];
     } else {
         echo "Erro ao obter informações do filme.";
         exit;
@@ -54,6 +72,7 @@ if (isset($_GET['id'])) {
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <title><?php echo isset($filme['title']) ? htmlspecialchars($filme['title']) : 'Filme não encontrado'; ?></title>
@@ -63,6 +82,7 @@ if (isset($_GET['id'])) {
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link href="node_modules/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
+
 <body>
 
     <!-- Navbar -->
@@ -103,23 +123,77 @@ if (isset($_GET['id'])) {
         <?php if (isset($filme)): ?>
             <div class="container">
                 <h1><?php echo htmlspecialchars($filme['title']); ?></h1>
-                <div class="image-button-container">
-                    <img class="img_title" src="https://image.tmdb.org/t/p/w500<?php echo htmlspecialchars($filme['poster_path']); ?>" alt="<?php echo htmlspecialchars($filme['title']); ?>">
-                    <div class="favorite-container">
-                        <button id="favorite-button" class="favorite-btn">Favoritar</button>
+                <div class="content-wrapper">
+                    <div class="image-button-container">
+                        <img class="img_title" src="https://image.tmdb.org/t/p/w500<?php echo htmlspecialchars($filme['poster_path']); ?>" alt="<?php echo htmlspecialchars($filme['title']); ?>">
+                        <div class="rating-container">
+                            <p><strong>Classificação:</strong>
+                                <?php
+                                $rating = htmlspecialchars($filme['vote_average']);
+                                $maxRating = 10; // A nota máxima
+                                $numStars = 5; // Número de estrelas que você deseja exibir
+                                $starPercentage = ($rating / $maxRating) * 100; // Calcula o percentual da nota em relação à nota máxima
+
+                                for ($i = 0; $i < $numStars; $i++) {
+                                    if ($i < $starPercentage / (100 / $numStars)) {
+                                        echo '<i class="bi bi-star-fill" style="color: gold;"></i>'; // Estrela preenchida
+                                    } else {
+                                        echo '<i class="bi bi-star" style="color: gray;"></i>'; // Estrela vazia
+                                    }
+                                }
+                                ?>
+                            </p>
+                            <div class="button-container">
+                                <button id="favorite-button" class="favorite-btn">Favoritar</button>
+                                <button id="watch-later-button" class="watch-later-btn">Assistir Depois</button>
+                            </div>
+                        </div>
                     </div>
+                    <p class="synopsis"><strong>Sinopse:</strong> <?php echo htmlspecialchars($filme['overview']); ?></p>
+                    <p><strong>Data de Lançamento:</strong> <?php echo htmlspecialchars($filme['release_date']); ?></p>
+                    <p><strong>Gêneros:</strong>
+                        <?php
+                        $generos = array_map(function ($gen) use ($generosTraduzidos) {
+                            return $generosTraduzidos[$gen['name']] ?? $gen['name'];
+                        }, $filme['genres']);
+                        echo implode(', ', $generos);
+                        ?>
+                    </p>
                 </div>
-                <p><strong>Sinopse:</strong> <?php echo htmlspecialchars($filme['overview']); ?></p>
-                <p><strong>Data de Lançamento:</strong> <?php echo htmlspecialchars($filme['release_date']); ?></p>
-                <p><strong>Avaliação:</strong> <?php echo htmlspecialchars($filme['vote_average']); ?></p>
-                <p><strong>Gêneros:</strong>
-                    <?php 
-                    $generos = array_map(function($gen) use ($generosTraduzidos) {
-                        return $generosTraduzidos[$gen['name']] ?? $gen['name'];
-                    }, $filme['genres']);
-                    echo implode(', ', $generos);
-                    ?>
-                </p>
+
+                <h2>Trailer</h2>
+                <div class="trailer">
+                <?php if ($trailerKey): ?>
+                    <iframe width="75%" height="450" src="https://www.youtube.com/embed/<?php echo $trailerKey; ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <?php else: ?>
+                    <p>Trailer não disponível.</p>
+                <?php endif; ?>
+                </div>
+                
+                <h2>Críticas</h2>
+                <div class="reviews">
+                    <?php if (empty($criticas)): ?>
+                        <p>Nenhuma crítica disponível.</p>
+                    <?php else: ?>
+                        <?php foreach ($criticas as $critica): ?>
+                            <div class="review">
+                                <div class="review-author">
+                                    <?php if (!empty($critica['author_details']['avatar_path'])): ?>
+                                        <?php
+                                        // Remove a barra inicial se existir
+                                        $avatarPath = ltrim($critica['author_details']['avatar_path'], '/');
+                                        ?>
+                                        <img src="https://image.tmdb.org/t/p/w500/<?php echo $avatarPath; ?>" alt="<?php echo htmlspecialchars($critica['author']); ?>" class="avatar">
+                                    <?php else: ?>
+                                        <img src="img/default-avatar.png" alt="Avatar padrão" class="avatar"> <!-- Imagem padrão se não houver avatar -->
+                                    <?php endif; ?>
+                                    <strong><?php echo htmlspecialchars($critica['author']); ?></strong>
+                                </div>
+                                <p><?php echo htmlspecialchars($critica['content']); ?></p>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </div>
 
                 <h2>Elenco</h2>
                 <div class="cast">
@@ -144,4 +218,5 @@ if (isset($_GET['id'])) {
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

@@ -7,24 +7,26 @@ $genres = json_decode($response, true)['genres'];
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <title>CineVOX - Categorias</title>
-    <link rel="stylesheet" href="css/cards.css">
+    <link rel="stylesheet" href="css/categorias.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="shortcut icon" href="img/icon.png" type="image/x-icon">
     <link href="node_modules/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
+
 <body>
 
     <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="navbar">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="navbar">
         <a class="navbar-brand" href="index.php">
             <img src="img/CineVOX.png" alt="logo" style="width: 100px;">
         </a>
-        
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Alterna navegação">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -57,15 +59,22 @@ $genres = json_decode($response, true)['genres'];
         </div>
     </nav>
 
-    <h1>Categorias</h1>
-    <ul>
-        <?php foreach ($genres as $genre): ?>
-            <li><a href="filmes_por_categoria.php?genre_id=<?php echo $genre['id']; ?>"><?php echo htmlspecialchars($genre['name']); ?></a></li>
-        <?php endforeach; ?>
-    </ul>
+    <div style="margin-top: 70px;"></div>
+    <div class="container">
+        <h1>Categorias</h1>
+        <div class="categorias-container">
+            <?php foreach ($genres as $genre): ?>
+                <div class="categoria">
+                    <a href="filmes_por_categoria.php?genre_id=<?php echo $genre['id']; ?>"><?php echo htmlspecialchars($genre['name']); ?></a>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+
 
     <script src="script.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

@@ -1,10 +1,18 @@
+html, body {
+    height: 100%; /* Define a altura do html e body para 100% */
+    margin: 0;    /* Remove margens padrão */
+    padding: 0;   /* Remove preenchimento padrão */
+}
+
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    margin: 0;
-    padding: 0;
-    background-image: linear-gradient(to bottom, #707070, #444444);
+    background: linear-gradient(to bottom, #707070, #444444); /* Define o gradiente como fundo */
+    background-attachment: fixed; /* Mantém o fundo fixo ao rolar a página */
+    background-size: cover; /* Garante que o fundo cubra toda a área */
+    background-repeat: no-repeat; /* Impede a repetição do fundo */
 }
+
 
 /* Ajusta o navbar para ficar fixo no topo */
 #navbar {

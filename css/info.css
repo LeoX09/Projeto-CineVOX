@@ -1,98 +1,140 @@
 /* Estilo geral da página de detalhes do filme */
 .container {
     margin-top: 70px;
-    padding: 20px;
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-    max-width: 800px;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Estilo do título do filme */
 .container h1 {
-    font-size: 32px;
+    font-size: 36px;
     font-weight: bold;
-    color: #9a0000;
+    color: #343a40;
     margin-bottom: 20px;
-    text-align: left;
+    text-align: center; /* Centraliza o título */
 }
 
-/* Estilo para a imagem do poster e botão */
+/* Estilo para o contêiner da imagem e classificação */
 .image-button-container {
     display: flex;
-    align-items: start; /* Alinha a imagem e o botão verticalmente */
+    align-items: flex-start; /* Alinha a imagem e a classificação no topo */
     margin-bottom: 20px;
 }
 
 /* Estilo para a imagem do poster */
-.container img {
-    display: block;
-    max-width: 100%; /* Ajusta o tamanho da imagem */
+.img_title {
+    max-width: 250px;
+    height: auto; /* Mantém a proporção da imagem */
     border-radius: 10px;
-    margin-right: 15px; /* Espaço entre a imagem e o botão */
-    border: 2px solid red; /* Borda vermelha */
-    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+    border: 2px solid #dc3545; /* Borda vermelha */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin-right: 20px; /* Espaçamento à direita */
 }
 
-.img_title {
-    height: 500px;
-    width: 350px;
+/* Estilo para classificação e sinopse */
+.image-button-container p {
+    flex: 1; /* Permite que o parágrafo ocupe o espaço restante */
+}
+
+.image-button-container p strong {
+    color: #495057; /* Cor mais escura para o texto forte */
+}
+
+.favorite-container {
+    text-align: center;
+    margin-top: 20px; /* Espaço acima dos botões */
+}
+
+/* Estilo dos botões */
+.button-container {
+    display: flex;
+    justify-content: center; /* Centraliza os botões */
+    gap: 15px; /* Espaço entre os botões */
+}
+
+.favorite-btn, .watch-later-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.favorite-btn {
+    background-color: #e74c3c; /* Vermelho */
+    color: white;
+}
+
+.favorite-btn:hover {
+    background-color: #c0392b; /* Vermelho escuro */
+    transform: translateY(-2px); /* Efeito de elevação */
+}
+
+.watch-later-btn {
+    background-color: #3498db; /* Azul */
+    color: white;
+}
+
+.watch-later-btn:hover {
+    background-color: #2980b9; /* Azul escuro */
+    transform: translateY(-2px); /* Efeito de elevação */
 }
 
 /* Estilo para informações do filme */
 p {
     font-size: 16px;
-    line-height: 1.5;
+    line-height: 1.6;
     color: #555;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
-p strong {
-    color: #333;
-    font-weight: bold;
+/* Estilo do trailer */
+h2 {
+    font-size: 28px;
+    color: #343a40;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    text-align: center; /* Centraliza o título do trailer */
 }
 
-.favorite-container {
-    text-align: center;
-    margin-top: 15px;
-}
-
-.favorite-btn {
-    padding: 8px 16px;
-    font-size: 16px;
-    background-color: #DA0037;
-    color: white;
+/* Estilo do iframe do trailer */
+iframe {
     border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
-.favorite-btn:hover {
-    background-color: #d32f2f;
-}
-
-.favorite-btn.active {
-    background-color: #4caf50;
+.trailer {
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    margin: 20px 0; /* Adiciona um espaço acima e abaixo do trailer */  
 }
 
 /* Elenco */
 .cast {
     display: flex;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 20px; /* Espaço entre os atores */
+    justify-content: center; /* Centraliza o elenco */
     margin-top: 20px;
 }
 
 .actor {
     text-align: center;
-    width: 100px;
+    width: 120px; /* Largura fixa para os cards dos atores */
 }
 
 .actor img {
     width: 100%;
-    border-radius: 50%;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 50%; /* Faz a imagem do ator ser circular */
+    border: 2px solid #dc3545; /* Borda azul */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     margin-bottom: 10px;
 }
 
@@ -102,106 +144,50 @@ p strong {
     margin: 0;
 }
 
-/* Imagens do filme */
-.images {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-top: 20px;
-}
-
-.images img {
-    width: 100%;
-    max-width: 200px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-/* Texto quando nenhuma imagem está disponível */
-.images p {
-    font-size: 14px;
-    color: #888;
-    text-align: center;
-    width: 100%;
-}
-
 /* Responsividade */
 @media (max-width: 576px) {
     .container {
-        padding: 15px;
+        padding: 20px;
+    }
+
+    .img_title {
+        max-width: 200px;
     }
 
     h1 {
+        font-size: 28px;
+    }
+
+    h2 {
         font-size: 24px;
     }
 
     p {
         font-size: 14px;
     }
-
-    .actor {
-        width: 80px;
-    }
-
-    .images img {
-        max-width: 100px;
-    }
 }
 
-.comment-container {
+.reviews {
+    margin-top: 20px;
+}
+
+.review {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.review-author {
     display: flex;
-    flex-direction: column; /* Empilha os elementos verticalmente */
-    align-items: center; /* Centraliza os itens */
-    margin-top: 20px; /* Espaço acima da barra de comentários */
+    align-items: center;
 }
 
-.comment-btn {
-    padding: 10px 20px; /* Estilo do botão */
-    font-size: 16px; /* Tamanho da fonte */
-    background-color: #DA0037; /* Cor de fundo */
-    color: white; /* Cor do texto */
-    border: none; /* Sem borda */
-    border-radius: 5px; /* Bordas arredondadas */
-    cursor: pointer; /* Cursor ao passar o mouse */
-    transition: background-color 0.3s; /* Transição suave */
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
 }
 
-.comment-btn:hover {
-    background-color: #d32f2f; /* Cor ao passar o mouse */
-}
-
-.comment-box {
-    display: flex; /* Usa flexbox para a área de comentários */
-    flex-direction: column; /* Alinha os itens em coluna */
-    align-items: center; /* Centraliza os itens */
-    width: 100%; /* Largura da área de comentários */
-    max-width: 600px; /* Largura máxima da área de comentários */
-    margin-top: 10px; /* Espaço acima da área de texto */
-}
-
-#comment-input {
-    width: 100%; /* Largura total da área de texto */
-    height: 100px; /* Altura da área de texto */
-    border: 1px solid #ccc; /* Borda do textarea */
-    border-radius: 5px; /* Bordas arredondadas */
-    padding: 10px; /* Espaçamento interno */
-    resize: none; /* Impede redimensionamento */
-}
-
-.submit-comment-btn {
-    padding: 10px 20px;
-    display: flex;
-    align-items: center; /* Estilo do botão */
-    font-size: 16px; /* Tamanho da fonte */
-    background-color: #DA0037; /* Cor de fundo */
-    color: white; /* Cor do texto */
-    border: none; /* Sem borda */
-    border-radius: 5px; /* Bordas arredondadas */
-    cursor: pointer; /* Cursor ao passar o mouse */
-    margin-top: 10px; /* Espaço acima do botão */
-    transition: background-color 0.3s; /* Transição suave */
-}
-
-.submit-comment-btn:hover {
-    background-color: #d32f2f; /* Cor ao passar o mouse */
-}

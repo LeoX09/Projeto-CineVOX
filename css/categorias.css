@@ -1,0 +1,33 @@
+/* Estilo para o título das categorias */
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    color: #d9534f; /* Cor vermelha */
+}
+
+.categorias-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centraliza as categorias na linha */
+    margin-top: 20px; /* Espaçamento acima das categorias */
+}
+
+.categoria {
+    background-color: rgba(255, 0, 0, 0.7); /* Cor vermelha com transparência */
+    color: white; /* Cor do texto */
+    padding: 15px 20px; /* Espaçamento interno */
+    margin: 10px; /* Espaçamento externo */
+    border-radius: 5px; /* Bordas arredondadas */
+    text-align: center; /* Centraliza o texto */
+    text-decoration: none; /* Remove sublinhado do link */
+    transition: background-color 0.3s; /* Efeito de transição na cor de fundo */
+}
+
+.categoria a {
+    color: white; /* Cor do texto do link */
+    text-decoration: none; /* Remove sublinhado do link */
+}
+
+.categoria:hover {
+    background-color: rgba(255, 0, 0, 1); /* Cor vermelha sólida ao passar o mouse */
+}
