@@ -53,8 +53,9 @@
 /* Estilo dos botões */
 .button-container {
     display: flex;
-    justify-content: center; /* Centraliza os botões */
+    justify-content: left; /* Centraliza os botões */
     gap: 15px; /* Espaço entre os botões */
+    margin-bottom: 8px;
 }
 
 .favorite-btn, .watch-later-btn {

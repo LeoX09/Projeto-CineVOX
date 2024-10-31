@@ -4,15 +4,24 @@ include 'config.php'; // Importa o arquivo de configuração
 if (isset($_GET['id'])) {
     $id_filme = intval($_GET['id']); // Garante que o ID seja um número inteiro
 
-    // Montando a URL corretamente
+    // Montando a URL corretamente para obter dados completos do filme e provedores de streaming
     $url = "https://api.themoviedb.org/3/movie/$id_filme?api_key=" . TMDB_API_KEY . "&append_to_response=videos,credits,images,reviews&language=pt-BR";
+    $providersUrl = "https://api.themoviedb.org/3/movie/$id_filme/watch/providers?api_key=" . TMDB_API_KEY;
 
-    // Fazendo a requisição
+    // Fazendo a requisição para obter os detalhes do filme
     $response = file_get_contents($url);
 
+    // Fazendo a requisição para obter os provedores de streaming
+    $providersResponse = file_get_contents($providersUrl);
+
     // Verifique se a requisição foi bem-sucedida
-    if ($response !== false) {
+    if ($response !== false && $providersResponse !== false) {
         $filme = json_decode($response, true);
+        $providersData = json_decode($providersResponse, true);
+
+        // Verifica se o filme está disponível para uma região específica (por exemplo, Brasil - BR)
+        $countryCode = 'BR';
+        $providers = $providersData['results'][$countryCode] ?? null;
 
         // Verifique se a resposta da API contém dados válidos
         if (isset($filme['status_code']) && $filme['status_code'] === 34) {
@@ -90,10 +99,15 @@ if (isset($_GET['id'])) {
         <a class="navbar-brand" href="index.php">
             <img src="img/CineVOX.png" alt="logo" style="width: 100px;">
         </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Alterna navegação">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link active" href="index.php">Home</a>
+                    <a class="nav-link active" href="index.php">Populares</a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link active" href="categorias.php">Categorias</a>
@@ -102,9 +116,9 @@ if (isset($_GET['id'])) {
                     <a class="nav-link active" href="favoritos.php">Favoritos</a>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0" onsubmit="event.preventDefault(); searchMovies();">
+            <form class="form-inline my-2 my-lg-0" action="buscar.php" method="GET">
                 <div class="input">
-                    <input class="form-control mr-sm-2" type="search" id="search-input" placeholder="Buscar filmes..." aria-label="Pesquisar" onkeypress="handleKeyPress(event)">
+                    <input class="form-control mr-sm-2" type="search" name="query" id="search-input" placeholder="Buscar filmes..." aria-label="Pesquisar">
                     <i class="bi bi-search"></i>
                 </div>
             </form>
@@ -143,12 +157,34 @@ if (isset($_GET['id'])) {
                                 }
                                 ?>
                             </p>
-                            <div class="button-container">
-                                <button id="favorite-button" class="favorite-btn">Favoritar</button>
-                                <button id="watch-later-button" class="watch-later-btn">Assistir Depois</button>
+
+                            <div class="platforms">
+                                <?php if ($providers): ?>
+                                    <div>
+                                        <p style="margin-top: 8px;"><strong>Streaming:</strong></p>
+                                        <?php if (isset($providers['flatrate'])): ?>
+                                            <?php foreach ($providers['flatrate'] as $provider): ?>
+                                                <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                                                    <img src="https://image.tmdb.org/t/p/w45<?php echo $provider['logo_path']; ?>" alt="<?php echo htmlspecialchars($provider['provider_name']); ?>" style="margin-right: 8px;">
+                                                    <span><?php echo htmlspecialchars($provider['provider_name']); ?></span>
+                                                </div>
+                                            <?php endforeach; ?>
+                                        <?php else: ?>
+                                            <p>Não disponível</p>
+                                        <?php endif; ?>
+                                    </div>
+                                <?php else: ?>
+                                    <p>Não há informações de plataformas disponíveis para esta região.</p>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
+
+                    <div class="button-container" style="margin-left: 10px;">
+                        <button id="favorite-button" class="favorite-btn">Favoritar</button>
+                        <button id="watch-later-button" class="watch-later-btn">Assistir Depois</button>
+                    </div>
+
                     <p class="synopsis"><strong>Sinopse:</strong> <?php echo htmlspecialchars($filme['overview']); ?></p>
                     <p><strong>Data de Lançamento:</strong> <?php echo htmlspecialchars($filme['release_date']); ?></p>
                     <p><strong>Gêneros:</strong>
@@ -163,13 +199,13 @@ if (isset($_GET['id'])) {
 
                 <h2>Trailer</h2>
                 <div class="trailer">
-                <?php if ($trailerKey): ?>
-                    <iframe width="75%" height="450" src="https://www.youtube.com/embed/<?php echo $trailerKey; ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <?php else: ?>
-                    <p>Trailer não disponível.</p>
-                <?php endif; ?>
+                    <?php if ($trailerKey): ?>
+                        <iframe width="75%" height="450" src="https://www.youtube.com/embed/<?php echo $trailerKey; ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <?php else: ?>
+                        <p>Trailer não disponível.</p>
+                    <?php endif; ?>
                 </div>
-                
+
                 <h2>Críticas</h2>
                 <div class="reviews">
                     <?php if (empty($criticas)): ?>

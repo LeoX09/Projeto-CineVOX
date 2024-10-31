@@ -1,0 +1,76 @@
+/* Estilos globais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Container do formulário */
+.form-container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.form-container h2 {
+    margin-bottom: 20px;
+    color: #333333;
+    font-size: 24px;
+}
+
+/* Campos do formulário */
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.form-container input[type="text"]:focus
+.form-container input[type="email"]:focus,
+.form-container input[type="password"]:focus {
+    border-color: #ff4500;
+}
+
+/* Botão de envio */
+.form-container button[type="submit"] {
+    background-color: #ff4500;
+    color: #ffffff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+}
+
+.form-container button[type="submit"]:hover {
+    background-color: #e63e00;
+}
+
+/* Links */
+.form-container p {
+    margin-top: 15px;
+}
+
+.form-container a {
+    color: #ff4500;
+    text-decoration: none;
+}
+
+.form-container a:hover {
+    text-decoration: underline;
+}

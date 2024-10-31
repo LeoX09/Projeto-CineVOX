@@ -19,7 +19,7 @@
     overflow: hidden;
     transition: transform 0.2s;
     cursor: pointer;
-    height: 370px; /* Mantém a altura fixa */
+    height: auto; /* Mantém a altura fixa */
     margin-bottom: 15px; /* Espaçamento inferior em vez de margens laterais */
 }
 

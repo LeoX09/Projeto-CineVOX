@@ -10,3 +10,5 @@ define('TMDB_API_POPULAR', TMDB_API_URL . '/popular?api_key=' . TMDB_API_KEY . '
 define('TMDB_API_GENRES', 'https://api.themoviedb.org/3/genre/movie/list?api_key=' . TMDB_API_KEY . '&language=pt-BR');
 
 ?>
+
+

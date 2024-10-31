@@ -47,5 +47,6 @@ Carroussel tá dando muito B.O
     outline: none; /* Remove o contorno de foco */
 }
 
+    $pdo = new PDO("sqlite:C:/Users/leand/OneDrive/Documentos/projeto_dev.web/projeto_cinevox/usuarios.sqlite");
 
 Deixa pro sistema de favoritos quando o sistema de conta estiver feito

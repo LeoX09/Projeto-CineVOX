@@ -1,8 +1,9 @@
 /* Estilo para o título das categorias */
 h1 {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     text-align: center;
     margin-top: 20px;
-    color: #d9534f; /* Cor vermelha */
+    color: #ce140e; /* Cor vermelha */
 }
 
 .categorias-container {
@@ -24,6 +25,7 @@ h1 {
 }
 
 .categoria a {
+    padding: 30px;
     color: white; /* Cor do texto do link */
     text-decoration: none; /* Remove sublinhado do link */
 }
