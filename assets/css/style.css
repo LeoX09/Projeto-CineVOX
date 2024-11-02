@@ -1,0 +1,86 @@
+html, body {
+    margin: 0; 
+    padding: 0;
+    font-family: 'Roboto', sans-serif; /* Usar Roboto para consistência com os cards */
+    text-align: center;
+    background: linear-gradient(to bottom right, rgba(30, 30, 30, 0.9), rgba(60, 60, 60, 0.9)), url('assets/img/background.jpg'); /* Fundo com gradiente e imagem */
+    background-attachment: fixed; /* Mantém o fundo fixo ao rolar a página */
+    background-size: cover; /* Garante que o fundo cubra toda a área */
+    background-repeat: no-repeat; /* Evita repetição da imagem */
+    color: white; /* Cor do texto para melhor legibilidade */
+    position: relative; /* Necessário para que o pseudo-elemento funcione corretamente */
+    z-index: 1; /* Coloca o conteúdo acima do fundo */
+}
+
+/* Adiciona um pseudo-elemento para o desfoque do fundo */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: inherit; /* Herda o fundo do body */
+    filter: blur(5px); /* Efeito de desfoque */
+    z-index: -1; /* Coloca atrás do conteúdo */
+}
+
+/* Ajusta a navbar */
+#navbar {
+    padding: 10px 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    position: fixed;
+    z-index: 2;
+}
+
+/* Estilo para a navbar transparente */
+.navbar {
+    background-color: rgba(0, 0, 0, 0.5) !important; /* Adiciona uma leve transparência à navbar */
+    transition: background-color 0.3s; /* Transição */
+}
+
+/* Quando Scrollar a nav muda de cor */
+.navbar-scrolled {
+    background-color: #171717 !important; /* Escurece a navbar */
+}
+
+.container-fluid {
+    height: 50px;
+}
+
+.input {
+    position: relative;
+}
+
+.input .bi {
+    position: absolute;
+    right: 20px; /* Posição à direita do input */
+    top: 50%; /* Centraliza verticalmente */
+    transform: translateY(-50%); /* Ajuste fino para centralizar */
+    color: red; /* Cor do ícone */
+    pointer-events: none; /* O ícone não captura eventos de clique */
+    transition: opacity 0.3s; /* Transição suave para o ícone */
+    opacity: 0; /* Começa invisível */
+}
+
+.input:focus-within .bi {
+    opacity: 1; /* Torna o ícone visível ao focar no input */
+}
+
+/* Estilos adicionais para o input */
+#search-input {
+    border: 2px solid #da00372b;
+    border-radius: 8px;
+    padding: 10px 20px;
+    transition: border-color 0.3s;
+    padding-right: 30px;
+}
+
+/* Efeito de foco */
+#search-input:focus {
+    border-color: #DA0037; /* Muda a cor da borda ao focar */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Adiciona uma sombra */
+    outline: none; /* Remove a borda padrão do foco */
+}

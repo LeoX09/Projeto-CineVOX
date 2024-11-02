@@ -1,5 +1,5 @@
 <?php
-include 'db_config.php';
+include '../config/db_config.php';
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -28,26 +28,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CineVOX - Recuperação</title>
-    <link rel="stylesheet" href="css/register.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../assets/css/register.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="shortcut icon" href="../assets/img/icon.pgn" type="image/x-icon">
 </head>
 
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="navbar">
-        <a class="navbar-brand" href="index.php">
-            <img src="img/CineVOX.png" alt="logo" style="width: 100px;">
+        <a class="navbar-brand" href="../public/index.php">
+            <img src="../assets/img/CineVOX.png" alt="logo" style="width: 100px;">
         </a>
     </nav>
 
     <div class="form-container">
-    <h2>Recuperação de senha</h2>
+        <h2>Recuperação de senha</h2>
         <form method="POST" action="">
             Email: <input type="email" name="email" required>
             <button type="submit">Enviar Código de Recuperação</button>
         </form>
 
-        <p>Voltar ao <a href="login.php">login</a></p>
+        <p>Voltar ao <a href="../user/login.php">login</a></p>
     </div>
 </body>
 

@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:wght@300;400;500;700&display=swap');
+
+#search-results {
+    margin-top: 20px; 
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+#movie-container {
+    margin-top: 20px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.movie-card {
+    position: relative;
+    display: flex;
+    flex-direction: column; 
+    border: none; /* Remove a borda padrão */
+    border-radius: 15px; /* Aumenta o arredondamento dos cantos */
+    overflow: hidden; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Efeito suave ao passar o mouse */
+    cursor: pointer;
+    margin-bottom: 20px; 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Sombra mais suave */
+}
+
+.movie-card:hover {
+    transform: translateY(-5px); /* Leve movimento para cima */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4); /* Sombra mais intensa no hover */
+}
+
+.movie-card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* Mantém a imagem proporcional */
+    border-bottom: 4px solid red; /* Borda inferior para destaque */
+}
+
+.movie-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.75); /* Cor de fundo escura */
+    color: white;
+    padding: 15px; 
+    display: none; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: background-color 0.3s ease; /* Transição suave para a cor de fundo */
+}
+
+.movie-card:hover .movie-info {
+    display: flex; /* Mostra informações no hover */
+}
+
+.synopsis, .rating {
+    margin: 5px 0;
+    font-size: 14px; 
+    line-height: 1.4; 
+    font-family: 'Roboto', sans-serif; /* Fonte Roboto para melhor legibilidade */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Sombra para destacar o texto */
+}
+
+/* Responsividade para 4 cards por linha */
+@media (min-width: 992px) {
+    .movie-card {
+        flex: 1 1 calc(25% - 20px);
+        margin: 10px; 
+    }
+}
+
+/* Ajuste para 2 cards por linha em telas menores */
+@media (max-width: 767px) {
+    .movie-card {
+        flex: 1 1 calc(50% - 10px);
+        margin: 5px; 
+    }
+}

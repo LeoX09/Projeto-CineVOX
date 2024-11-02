@@ -1,5 +1,5 @@
 <?php
-include 'db_config.php';
+include '../config/db_config.php';
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['email_recuperacao'])) {
@@ -28,15 +28,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['email_recuperacao']
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CineVOX - Redefinir Senha</title>
-    <link rel="stylesheet" href="css/register.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../assets/css/register.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="shortcut icon" href="../assets/img/icon.png" type="image/x-icon">
 </head>
 
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="navbar">
-        <a class="navbar-brand" href="index.php">
-            <img src="img/CineVOX.png" alt="logo" style="width: 100px;">
+        <a class="navbar-brand" href="../public/index.php">
+            <img src="../assets/img/CineVOX.png" alt="logo" style="width: 100px;">
         </a>
     </nav>
 
