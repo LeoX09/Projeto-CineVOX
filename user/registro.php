@@ -1,21 +1,3 @@
-<?php
-include '../config/db_config.php';
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nome = $_POST['nome'];
-    $email = $_POST['email'];
-    $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
-
-    try {
-        $stmt = $pdo->prepare("INSERT INTO usuarios (nome, email, senha) VALUES (?, ?, ?)");
-        $stmt->execute([$nome, $email, $senha]);
-        echo "Usuário registrado com sucesso!";
-    } catch (PDOException $e) {
-        echo "Erro ao registrar usuário: " . $e->getMessage();
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -39,9 +21,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="form-container">
         <h2>Registrar-se</h2>
         <form method="POST" action="">
-            Nome: <input type="text" name="nome" required>
-            Email: <input type="email" name="email" required>
-            Senha: <input type="password" name="senha" required>
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha" required>
+
             <button type="submit">Registrar</button>
         </form>
 

@@ -77,3 +77,11 @@ function formatReviews($reviews) {
     }
     return []; // Retorna array vazio se não houver críticas
 }
+
+function getMovieCredits($movieId, $language = 'en') {
+    $apiKey = '849679f956996f27d90a29bc51be2519';
+    $url = "https://api.themoviedb.org/3/movie/$movieId/credits?api_key=$apiKey&language=$language";
+    $response = file_get_contents($url);
+    return json_decode($response, true);
+}
+
