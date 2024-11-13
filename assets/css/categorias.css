@@ -1,9 +1,15 @@
 /* Estilo para o título das categorias */
+/* Estilo do título h1 */
 h1 {
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    text-align: center;
-    margin-top: 20px;
-    color: #ce140e; /* Cor vermelha */
+    font-family: 'Roboto', sans-serif;
+    font-size: 3.0rem; /* Tamanho adequado para destaque, mas sem exagero */
+    font-weight: 600; /* Peso intermediário para maior legibilidade */
+    color: #fff; /* Cor branca para destaque no fundo */
+    text-transform: uppercase; /* Em maiúsculas para um visual mais forte */
+    text-align: center; /* Centraliza o título */
+    letter-spacing: 1.5px; /* Espaçamento entre as letras para maior clareza */
+    margin-bottom: 10px; /* Espaçamento abaixo do título */
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2); /* Sombra leve para dar profundidade */
 }
 
 .categorias-container {

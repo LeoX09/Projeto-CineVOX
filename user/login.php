@@ -6,30 +6,38 @@ include '../config/db_config.php';
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email'];
-    $senha = $_POST['senha'];
+try {
+    // Verificar se a conexão com o banco de dados está funcionando
+    if (!$pdo) {
+        throw new Exception("Falha na conexão com o banco de dados.");
+    }
 
-    try {
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $email = $_POST['email'];
+        $senha = $_POST['senha'];
+
+        // Preparar a consulta para buscar o usuário pelo email
         $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = ?");
         $stmt->execute([$email]);
         $usuario = $stmt->fetch();
 
         // Verificar se o usuário existe e a senha está correta
         if ($usuario && password_verify($senha, $usuario['senha'])) {
-            // Armazenar o ID do usuário na sessão
-            $_SESSION['usuario_id'] = $usuario['id'];
-            $_SESSION['usuario_nome'] = $usuario['nome']; // Opcional: armazenar o nome do usuário
+            // Armazenar o ID e o nome do usuário na sessão
+            $_SESSION['user_id'] = $usuario['id'];
+            $_SESSION['user_name'] = $usuario['nome'];
 
             // Redirecionar para a página principal
-            header("Location: index.php"); // Substitua 'pagina_principal.php' pelo nome real da sua página principal
+            header("Location: ../public/index.php");
             exit(); // Encerrar o script após o redirecionamento
         } else {
             echo "Email ou senha inválidos.";
         }
-    } catch (PDOException $e) {
-        echo "Erro ao fazer login: " . $e->getMessage();
     }
+} catch (PDOException $e) {
+    echo "Erro ao fazer login: " . $e->getMessage();
+} catch (Exception $e) {
+    echo $e->getMessage();
 }
 ?>
 
@@ -54,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </nav>
 
     <div class="form-container">
-    <h2>Login</h2>
+        <h2>Login</h2>
         <form method="POST" action="">
             Email: <input type="email" name="email" required>
             Senha: <input type="password" name="senha" required>

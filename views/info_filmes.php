@@ -30,6 +30,7 @@ if (isset($_GET['id'])) {
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <title><?php echo htmlspecialchars($filme['title'] ?? 'Filme não encontrado'); ?></title>
@@ -54,7 +55,7 @@ if (isset($_GET['id'])) {
                 <p><strong>Streaming:</strong> <?php echo formatProviders($providers); ?></p>
                 <p><strong>Avaliação:</strong> <?php echo formatStars($filme['vote_average']); ?> (<?php echo htmlspecialchars($filme['vote_count']); ?> avaliações)</p>
                 <div class="buttons">
-                    <button class="favorite-btn">Favoritar</button>
+                    <button class="favorite-btn" onclick="adicionarFavorito(<?php echo $id_filme; ?>)">Favoritar</button>
                     <button class="watch-later-btn">Assistir Depois</button>
                 </div>
             </div>
@@ -86,4 +87,5 @@ if (isset($_GET['id'])) {
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="../vendor/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

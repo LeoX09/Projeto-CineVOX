@@ -11,6 +11,32 @@
 </head>
 
 <body>
+    <?php
+    // Inclui o arquivo de configuração do banco de dados
+    require_once '../config/db_config.php';
+
+    // Verifica se o formulário foi enviado
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Captura e sanitiza os dados do formulário
+        $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_STRING);
+        $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+        $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT); // Hash da senha para segurança
+
+        // Insere o novo usuário no banco de dados
+        try {
+            $sql = "INSERT INTO usuarios (nome, email, senha) VALUES (:nome, :email, :senha)";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':nome', $nome);
+            $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':senha', $senha);
+            $stmt->execute();
+
+            echo "<p>Registro realizado com sucesso!</p>";
+        } catch (PDOException $e) {
+            echo "<p>Erro ao registrar: " . $e->getMessage() . "</p>";
+        }
+    }
+    ?>
 
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="navbar">
         <a class="navbar-brand" href="../public/index.php">

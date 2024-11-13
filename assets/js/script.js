@@ -54,3 +54,14 @@ window.onscroll = function() {
     }
 };
 
+function adicionarFavorito(movieId) {
+    $.post('../scripts/adicionar_favoritos.php', { movie_id: movieId }, function(response) {
+        alert(response);
+    });
+}
+
+function removerFavorito(movieId) {
+    $.post('../scripts/remover_favoritos.php', { movie_id: movieId }, function(response) {
+        alert(response);
+    });
+}

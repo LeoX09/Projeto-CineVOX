@@ -21,6 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['email_recuperacao']
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 

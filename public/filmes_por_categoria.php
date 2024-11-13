@@ -52,7 +52,7 @@ if (isset($_GET['genre_id'])) {
         <?php if (isset($filmes['results'])): ?>
             <?php foreach ($filmes['results'] as $filme): ?>
                 <div class="col-lg-3 col-md-4 col-sm-6 mb-4"> <!-- 4 cards em telas grandes -->
-                    <div class="movie-card" onclick="window.location.href='info_filmes.php?id=<?php echo $filme['id']; ?>'">
+                    <div class="movie-card" onclick="window.location.href='../views/info_filmes.php?id=<?php echo $filme['id']; ?>'">
                         <img src="https://image.tmdb.org/t/p/w500<?php echo $filme['poster_path']; ?>" alt="<?php echo htmlspecialchars($filme['title']); ?>" class="img-fluid">
                         <div class="movie-info">
                             <p class="synopsis">Sinopse: <?php echo htmlspecialchars($filme['overview']); ?></p>

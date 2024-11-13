@@ -29,17 +29,20 @@
                 if (empty($movies['results'])) {
                     echo "<p>Nenhum filme encontrado para sua pesquisa.</p>";
                 } else {
-                    foreach ($movies['results'] as $movie): ?>
-                        <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-4">
-                            <div class="movie-card" onclick="window.location.href='../views/info_filmes.php?id=<?php echo $movie['id']; ?>'">
-                                <img src="https://image.tmdb.org/t/p/w500<?php echo $movie['poster_path']; ?>" alt="<?php echo $movie['title']; ?>">
-                                <div class="movie-info">
-                                    <p class="synopsis">Sinopse: <?php echo $movie['overview']; ?></p>
-                                    <p class="rating">Nota: <?php echo $movie['vote_average']; ?></p>
+                    foreach ($movies['results'] as $movie) {
+                        // Verifique se o poster_path não está vazio
+                        if (!empty($movie['poster_path'])): ?>
+                            <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-4">
+                                <div class="movie-card" onclick="window.location.href='../views/info_filmes.php?id=<?php echo $movie['id']; ?>'">
+                                    <img src="https://image.tmdb.org/t/p/w500<?php echo $movie['poster_path']; ?>" alt="<?php echo $movie['title']; ?>">
+                                    <div class="movie-info">
+                                        <p class="synopsis">Sinopse: <?php echo $movie['overview']; ?></p>
+                                        <p class="rating">Nota: <?php echo $movie['vote_average']; ?></p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    <?php endforeach;
+                        <?php endif;
+                    }
                 }
             }
             ?>

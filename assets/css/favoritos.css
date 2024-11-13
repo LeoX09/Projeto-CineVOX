@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+/* Reset geral */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo geral da página */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #121212; /* Cor de fundo escura */
+    color: #fff;
+    line-height: 1.6;
+}
+
+/* Estilo do título h1 */
+h1 {
+    font-size: 3rem; /* Tamanho adequado para destaque, sem exagero */
+    font-weight: 500;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* Estilo do container */
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Grid responsivo para os cards de filmes */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Estilo do card de filme */
+.movie-card {
+    background: #222;
+    border-radius: 15px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 250px; /* Ajusta a largura máxima do card */
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transições para o card */
+}
+
+/* Imagem do poster */
+.movie-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Estilo do botão de remover favorito */
+.remove-favorite-btn {
+    background: transparent;
+    color: #ff4757;
+    border: 2px solid #ff4757;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    border-radius: 20px;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s ease; /* Transição suave para a opacidade */
+}
+
+/* Mostrar o botão ao passar o mouse sobre o card */
+.movie-card:hover .remove-favorite-btn {
+    opacity: 1; /* O botão aparece suavemente ao passar o mouse */
+}
+
+/* Efeito de hover para o card */
+.movie-card:hover {
+    transform: translateY(-5px); /* Eleva o card quando passa o mouse */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4); /* Sombra mais forte no hover */
+}
+
+/* Mensagem caso o usuário não tenha favoritos */
+.no-favorites {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #bdc3c7;
+    margin-top: 50px;
+}
+
+/* Responsividade para 4 cards por linha */
+@media (min-width: 992px) {
+    .movie-card {
+        flex: 1 1 calc(25% - 20px);
+        margin: 10px;
+    }
+}
+
+/* Ajuste para 2 cards por linha em telas menores */
+@media (max-width: 767px) {
+    .movie-card {
+        flex: 1 1 calc(50% - 10px);
+        margin: 5px;
+    }
+}
+
+/* Ajuste para 1 card por linha em telas muito pequenas */
+@media (max-width: 480px) {
+    .movie-card {
+        flex: 1 1 100%;
+    }
+}
