@@ -85,3 +85,20 @@ function getMovieCredits($movieId, $language = 'en') {
     return json_decode($response, true);
 }
 
+function getComentariosPorFilme($id_filme) {
+    global $pdo; // Usa a conexão PDO definida no db_config.php
+
+    // Consulta para buscar os comentários do filme com o id_filme
+    $sql = "SELECT c.texto, c.data_hora, u.nome AS usuario_nome
+            FROM comentarios c
+            JOIN usuarios u ON c.user_id = u.id
+            WHERE c.id_filme = :id_filme
+            ORDER BY c.data_hora DESC";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':id_filme', $id_filme, PDO::PARAM_INT); // Faz a ligação segura do parâmetro
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC); // Retorna todos os comentários encontrados
+}
+
+

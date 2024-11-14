@@ -9,6 +9,16 @@ define('TMDB_API_POPULAR', TMDB_API_URL . '/popular?api_key=' . TMDB_API_KEY . '
 // Adicionando URL para gêneros (categorias)
 define('TMDB_API_GENRES', 'https://api.themoviedb.org/3/genre/movie/list?api_key=' . TMDB_API_KEY . '&language=pt-BR');
 
+function obterFilmePorId($id_filme) {
+    $api_url = "https://api.themoviedb.org/3/movie/$id_filme?api_key=" . TMDB_API_KEY . "&language=pt-BR";
+    $response = file_get_contents($api_url);
+    
+    if ($response === false) {
+        return false;
+    }
+
+    return json_decode($response, true);
+}
 ?>
 
 

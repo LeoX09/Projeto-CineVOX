@@ -1,5 +1,6 @@
 <?php
 include '../config/config.php';
+include '../config/db_config.php';
 include '../config/helpers.php';
 
 if (isset($_GET['id'])) {
@@ -7,7 +8,7 @@ if (isset($_GET['id'])) {
     $filme = getMovieDetails($id_filme, 'pt-BR');
     $providers = getMovieProviders($id_filme, 'BR');
     $trailerKey = getMovieTrailerKey($filme, 'en');
-
+    $comentario = getComentariosPorFilme($id_filme);
     if (!$filme) {
         echo "Filme não encontrado.";
         exit;
@@ -24,6 +25,7 @@ if (isset($_GET['id'])) {
     }
 } else {
     echo "Nenhum filme selecionado.";
+
     exit;
 }
 ?>
@@ -56,7 +58,7 @@ if (isset($_GET['id'])) {
                 <p><strong>Avaliação:</strong> <?php echo formatStars($filme['vote_average']); ?> (<?php echo htmlspecialchars($filme['vote_count']); ?> avaliações)</p>
                 <div class="buttons">
                     <button class="favorite-btn" onclick="adicionarFavorito(<?php echo $id_filme; ?>)">Favoritar</button>
-                    <button class="watch-later-btn">Assistir Depois</button>
+                    <button class="watch-later-btn">Ver depois</button>
                 </div>
             </div>
         </div>
@@ -81,11 +83,32 @@ if (isset($_GET['id'])) {
                 <?php endforeach; ?>
             </div>
         </aside>
-    </div>
 
-    <script src="../assets/js/script.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="../vendor/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <section class="comments-section">
+            <h2>Comentários</h2>
+            <?php if ($comentario): ?>
+                <?php foreach ($comentario as $coment): ?>
+                    <div class="comment">
+                        <p><strong><?php echo htmlspecialchars($coment['usuario_nome']); ?></strong> <span><?php echo htmlspecialchars($coment['data_hora']); ?></span></p>
+                        <p><?php echo nl2br(htmlspecialchars($coment['texto'])); ?></p>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>Nenhum comentário disponível para este filme.</p>
+            <?php endif; ?>
+        </section>
+
+
+        <form action="../scripts/adicionar_comentario.php" method="POST">
+            <input type="hidden" name="id_filme" value="<?php echo $id_filme; ?>">
+            <textarea name="texto" placeholder="Adicione um comentário..." required></textarea>
+            <button type="submit">Enviar</button>
+        </form>
+                
+
+        <script src="../assets/js/script.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="../vendor/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
