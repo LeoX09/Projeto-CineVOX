@@ -28,9 +28,10 @@ try {
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meus Comentários - CineVOX</title>
     <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="../assets/css/cards.css">
+    <link rel="stylesheet" href="../assets/css/comentarios.css">
     <link rel="shortcut icon" href="../assets/img/icon.png" type="image/x-icon">
     <link rel="stylesheet" href="../vendor/node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link href="../vendor/node_modules/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
@@ -40,27 +41,33 @@ try {
 
     <?php include '../views/nav.php'; ?>
 
-    <div class="container mt-5">
+    <div class="container">
         <h1>Meus Comentários</h1>
 
         <div class="row">
             <?php
             if (empty($comentarios)) {
-                echo "<p>Você ainda não fez comentários em nenhum filme.</p>";
+                echo "<p class='text-white text-center'>Você ainda não fez comentários em nenhum filme.</p>";
             } else {
                 foreach ($comentarios as $comentario) {
                     $movieDetails = getMovieDetails($comentario['id_filme'], 'pt-BR');
-                    if ($movieDetails): ?>
-                        <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-4">
-                            <div class="movie-card" onclick="window.location.href='info_filmes.php?id=<?php echo htmlspecialchars($movieDetails['id']); ?>'">
+                    if ($movieDetails) : ?>
+                        <div class="col-12 mb-4">
+                            <div class="movie-card" onclick="window.location.href='../views/info_filmes.php?id=<?php echo htmlspecialchars($movieDetails['id']); ?>'">
                                 <img src="https://image.tmdb.org/t/p/w500<?php echo htmlspecialchars($movieDetails['poster_path']); ?>" alt="<?php echo htmlspecialchars($movieDetails['title']); ?>">
                                 <div class="movie-info">
+                                    <h5><?php echo htmlspecialchars($movieDetails['title']); ?></h5>
                                     <p><strong>Comentário:</strong> <?php echo htmlspecialchars($comentario['texto']); ?></p>
                                     <small><strong>Data:</strong> <?php echo htmlspecialchars($comentario['data_hora']); ?></small>
+                                    <form action="../scripts/delete_comentario.php" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este comentário?')">
+                                        <input type="hidden" name="comentario_id" value="<?php echo htmlspecialchars($comentario['id']); ?>">
+                                        <button type="submit" class="btn btn-danger">Excluir</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
-            <?php endif;
+            <?php
+                    endif;
                 }
             }
             ?>

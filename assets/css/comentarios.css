@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+/* Reset geral */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo geral da página */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #121212; /* Cor de fundo escura */
+    color: #fff;
+    line-height: 1.6;
+}
+
+/* Estilo do título h1 */
+h1 {
+    font-size: 3rem; /* Tamanho adequado para destaque, sem exagero */
+    font-weight: 500;
+    color: #fff;
+    text-align: center;
+    margin-top: 60px; /* Adiciona um espaçamento superior maior */
+    margin-bottom: 40px; /* Mantém o espaçamento inferior */
+}
+
+/* Estilo do container */
+.container {
+    margin-top: 80px;
+}
+
+/* Estilo dos cards */
+.movie-card {
+    display: flex; /* Alinha os elementos lado a lado */
+    flex-direction: row; /* Direção em linha */
+    background-color: #1f1f1f;
+    border: none;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    height: auto; /* Acompanhando o tamanho do conteúdo */
+    max-width: 100%; /* Prevenindo que ultrapasse o espaço */
+}
+
+.movie-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Imagem do filme */
+.movie-card img {
+    max-width: 120px; /* Define o tamanho máximo */
+    height: auto; /* Mantém proporção */
+    border-radius: 8px;
+    margin-right: 15px; /* Espaçamento entre a imagem e as informações */
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Informações do filme */
+.movie-info {
+    display: flex;
+    flex-direction: column; /* Organiza as informações verticalmente */
+    justify-content: space-between;
+    color: #fff;
+    flex: 1; /* Permite que as informações ocupem o espaço restante */
+}
+
+/* Título do filme */
+.movie-info h5 {
+    font-size: 1.1rem;
+    margin: 0 0 10px 0;
+    color: #e50914;
+    font-weight: bold;
+}
+
+/* Comentário */
+.movie-info p {
+    font-size: 0.95rem;
+    margin: 5px 0;
+    line-height: 1.4;
+    color: #ddd;
+}
+
+/* Data do comentário */
+.movie-info small {
+    font-size: 0.85rem;
+    color: #888;
+    margin-top: 10px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .movie-card {
+        flex-direction: column; /* Alinha em coluna para dispositivos menores */
+        align-items: center;
+        text-align: center;
+    }
+
+    .movie-card img {
+        margin-right: 0;
+        margin-bottom: 10px; /* Adiciona espaçamento abaixo da imagem */
+    }
+
+    .movie-info {
+        text-align: center;
+    }
+}

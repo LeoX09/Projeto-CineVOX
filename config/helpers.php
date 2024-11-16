@@ -46,10 +46,32 @@ function formatStars($rating) {
            str_repeat('<i class="bi bi-star" style="color: gray;"></i>', $numStars - $filledStars);
 }
 
-/* Formata a lista de provedores de streaming disponíveis para exibição. */
+/* Formata a lista de provedores de streaming disponíveis para exibição, incluindo a logo de cada provedor. */
 function formatProviders($providers) {
-    if (!$providers || empty($providers['flatrate'])) return "Não disponível";
-    return implode(', ', array_map(fn($p) => htmlspecialchars($p['provider_name']), $providers['flatrate']));
+    // Verifica se há provedores de streaming
+    if (!$providers || empty($providers['flatrate'])) {
+        return "Não disponível";
+    }
+
+    // Inicializa o resultado
+    $providerList = '';
+
+    // Itera sobre os provedores disponíveis e formata a exibição
+    foreach ($providers['flatrate'] as $provider) {
+        $providerName = htmlspecialchars($provider['provider_name']);
+        $providerLogo = isset($provider['logo_path']) ? "https://image.tmdb.org/t/p/w500" . $provider['logo_path'] : '';
+
+        // Se tiver a logo, exibe o nome do provedor junto com a logo
+        if ($providerLogo) {
+            $providerList .= "<img src=\"$providerLogo\" alt=\"$providerName\" class=\"provider-logo\"> $providerName<br>";
+        } else {
+            // Caso não tenha logo, apenas o nome
+            $providerList .= "$providerName<br>";
+        }
+    }
+
+    // Retorna a lista formatada de provedores
+    return $providerList;
 }
 
 /* Traduz e formata os gêneros de um filme para português. */

@@ -7,6 +7,7 @@
     <title>CineVOX - Registre-se</title>
     <link rel="stylesheet" href="../assets/css/register.css">
     <link rel="stylesheet" href="../assets/css/style.css">
+    <link href="../vendor/node_modules/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="shortcut icon" href="../assets/img/icon.png" type="image/x-icon">
 </head>
 
@@ -48,19 +49,26 @@
         <h2>Registrar-se</h2>
         <form method="POST" action="">
             <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome" required>
+            <input type="text" id="nome" name="nome" required placeholder="Seu nome de usuário">
 
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" name="email" required placeholder="Seu email">
 
-            <label for="senha">Senha:</label>
-            <input type="password" id="senha" name="senha" required>
+            <div class="senha-container">
+                <label for="senha">Senha:</label>
+                <input type="password" id="senha" name="senha" required placeholder="Sua senha">
+                <button type="button" id="toggle-eye1">
+                    <i id="eye-icon" class="bi bi-eye-slash"></i>
+                </button>
+            </div>
 
             <button type="submit">Registrar</button>
         </form>
 
         <p>Login: <a href="../user/login.php">Login</a></p>
     </div>
+
+    <script src="../assets/js/toggleye.js"></script>
 </body>
 
 </html>

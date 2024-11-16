@@ -50,6 +50,7 @@ try {
     <title>CineVOX - Login</title>
     <link rel="stylesheet" href="../assets/css/register.css">
     <link rel="stylesheet" href="../assets/css/style.css">
+    <link href="../vendor/node_modules/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="shortcut icon" href="../assets/img/icon.png" type="image/x-icon">
 </head>
 
@@ -64,15 +65,20 @@ try {
     <div class="form-container">
         <h2>Login</h2>
         <form method="POST" action="">
-            Email: <input type="email" name="email" required>
-            Senha: <input type="password" name="senha" required>
-            <button type="submit">Login</button>
+            Email: <input type="email" name="email" placeholder="Digite seu email" require>
+            <div class="senha-container">
+               Senha: <input type="password" id="senha" name="senha" placeholder="Digite sua senha" require>
+                <button type="button" id="toggle-eye">
+                    <i id="eye-icon" class="bi bi-eye-slash"></i> <!-- Ícone de olho -->
+                </button>
+                <button type="submit">Login</button>
+            </div>
         </form>
 
         <p><a href="../user/registro.php">Registrar-se</a></p>
-        <p><a href="../user/recuperacao.php">Redefinir Senha</a></p>
     </div>
 
+    <script src="../assets/js/toggleye.js"></script>
 </body>
 
 </html>

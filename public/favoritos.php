@@ -27,9 +27,10 @@ try {
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Favoritos - CineVOX</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/favoritos.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="shortcut icon" href="../assets/img/icon.png" type="image/x-icon">
     <link rel="stylesheet" href="../vendor/node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link href="../vendor/node_modules/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
@@ -39,7 +40,7 @@ try {
 
     <?php include '../views/nav.php'; ?>
 
-    <div class="container mt-5">
+    <div class="container" style="margin-top: 70px;">
         <h1>Filmes Favoritos</h1>
 
         <div class="row">
@@ -51,7 +52,7 @@ try {
                     $movieDetails = getMovieDetails($favorito['movie_id'], 'pt-BR');
                     if ($movieDetails): ?>
                         <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-4">
-                            <div class="movie-card" onclick="window.location.href='info_filmes.php?id=<?php echo htmlspecialchars($movieDetails['id']); ?>'">
+                            <div class="movie-card" onclick="window.location.href='../views/info_filmes.php?id=<?php echo htmlspecialchars($movieDetails['id']); ?>'">
                                 <img src="https://image.tmdb.org/t/p/w500<?php echo htmlspecialchars($movieDetails['poster_path']); ?>" alt="<?php echo htmlspecialchars($movieDetails['title']); ?>">
                                 <div class="movie-info">
                                     <form method="post" action="../scripts/remover_favoritos.php">
