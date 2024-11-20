@@ -1,1 +1,0 @@
-Filtragem de Resultados, quando um filme não houver poster ele vai ser barrado de aparecer na barra de pesquisa pela  if (!empty($movie['poster_path'])): ?>. Ou seja, quando não tiver
