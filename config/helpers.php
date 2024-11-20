@@ -74,32 +74,6 @@ function formatProviders($providers) {
     return $providerList;
 }
 
-/* Traduz e formata os gêneros de um filme para português. */
-function formatGenres($genres) {
-    $generosTraduzidos = [
-        "Action" => "Ação", "Adventure" => "Aventura", "Animation" => "Animação", "Comedy" => "Comédia",
-        "Crime" => "Crime", "Documentary" => "Documentário", "Drama" => "Drama", "Family" => "Família",
-        "Fantasy" => "Fantasia", "History" => "História", "Horror" => "Terror", "Music" => "Música",
-        "Mystery" => "Mistério", "Romance" => "Romance", "Science Fiction" => "Ficção Científica",
-        "TV Movie" => "Filme para TV", "Thriller" => "Suspense", "War" => "Guerra", "Western" => "Faroeste"
-    ];
-    return implode(', ', array_map(fn($g) => $generosTraduzidos[$g['name']] ?? $g['name'], $genres));
-}
-
-/* Formata as críticas do filme */
-function formatReviews($reviews) {
-    if (isset($reviews['results']) && is_array($reviews['results']) && !empty($reviews['results'])) {
-        return array_map(function($review) {
-            return [
-                'author' => htmlspecialchars($review['author']),
-                'content' => htmlspecialchars($review['content']),
-                'rating' => formatStars($review['rating'] ?? 0) // Se houver avaliação
-            ];
-        }, $reviews['results']);
-    }
-    return []; // Retorna array vazio se não houver críticas
-}
-
 function getMovieCredits($movieId, $language = 'en') {
     $apiKey = '849679f956996f27d90a29bc51be2519';
     $url = "https://api.themoviedb.org/3/movie/$movieId/credits?api_key=$apiKey&language=$language";

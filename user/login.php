@@ -13,8 +13,13 @@ try {
     }
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $email = $_POST['email'];
-        $senha = $_POST['senha'];
+        $email = htmlspecialchars(trim($_POST['email']));
+        $senha = htmlspecialchars(trim($_POST['senha']));
+
+        // Verificar se os campos não estão vazios
+        if (empty($email) || empty($senha)) {
+            throw new Exception("Por favor, preencha todos os campos.");
+        }
 
         // Preparar a consulta para buscar o usuário pelo email
         $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = ?");
@@ -31,16 +36,15 @@ try {
             header("Location: ../public/index.php");
             exit(); // Encerrar o script após o redirecionamento
         } else {
-            echo "Email ou senha inválidos.";
+            $error_message = "Email ou senha inválidos.";
         }
     }
 } catch (PDOException $e) {
-    echo "Erro ao fazer login: " . $e->getMessage();
+    $error_message = "Erro ao fazer login: " . $e->getMessage();
 } catch (Exception $e) {
-    echo $e->getMessage();
+    $error_message = $e->getMessage();
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -64,21 +68,32 @@ try {
 
     <div class="form-container">
         <h2>Login</h2>
-        <form method="POST" action="">
-            Email: <input type="email" name="email" placeholder="Digite seu email" require>
-            <div class="senha-container">
-               Senha: <input type="password" id="senha" name="senha" placeholder="Digite sua senha" require>
-                <button type="button" id="toggle-eye">
-                    <i id="eye-icon" class="bi bi-eye-slash"></i> <!-- Ícone de olho -->
-                </button>
-                <button type="submit">Login</button>
+        
+        <!-- Mensagem de erro -->
+        <?php if (isset($error_message)): ?>
+            <div class="alert alert-danger">
+                <?php echo htmlspecialchars($error_message); ?>
             </div>
+        <?php endif; ?>
+
+        <form method="POST" action="">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Digite seu email" required>
+
+            <div class="senha-container">
+                <label for="senha">Senha:</label>
+                <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
+                <button type="button" id="toggle-eye" tabindex="-1">
+                    <i id="eye-icon" class="bi bi-eye-slash"></i>
+                </button>
+            </div>
+
+            <button type="submit">Login</button>
         </form>
 
         <p><a href="../user/registro.php">Registrar-se</a></p>
     </div>
 
-    <script src="../assets/js/toggleye.js"></script>
 </body>
 
 </html>

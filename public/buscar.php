@@ -1,3 +1,7 @@
+<?php
+$termoBusca = isset($_GET['query']) ? htmlspecialchars($_GET['query']) : '';
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -17,6 +21,9 @@
     <?php include '../views/nav.php'; ?>
 
     <div class="container" style="margin-top: 70px;">
+
+    <h1>Resultados para: <span style="color: red;"><?= $termoBusca ?></span></h1>
+
         <div class="row">
             <?php
             include '../config/config.php';

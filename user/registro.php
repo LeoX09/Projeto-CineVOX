@@ -57,8 +57,8 @@
             <div class="senha-container">
                 <label for="senha">Senha:</label>
                 <input type="password" id="senha" name="senha" required placeholder="Sua senha">
-                <button type="button" id="toggle-eye1">
-                    <i id="eye-icon" class="bi bi-eye-slash"></i>
+                <button type="button" id="toggle-eye">
+                    <i id="eye-icon" class="bi bi-eye-slash"></i> 
                 </button>
             </div>
 

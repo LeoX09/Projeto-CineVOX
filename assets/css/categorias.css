@@ -1,41 +1,38 @@
-/* Estilo para o título das categorias */
-/* Estilo do título h1 */
 h1 {
     font-family: 'Roboto', sans-serif;
-    font-size: 3.0rem; /* Tamanho adequado para destaque, mas sem exagero */
-    font-weight: 600; /* Peso intermediário para maior legibilidade */
-    color: #fff; /* Cor branca para destaque no fundo */
-    text-transform: uppercase; /* Em maiúsculas para um visual mais forte */
-    text-align: center; /* Centraliza o título */
-    letter-spacing: 1.5px; /* Espaçamento entre as letras para maior clareza */
-    margin-bottom: 10px; /* Espaçamento abaixo do título */
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2); /* Sombra leve para dar profundidade */
+    font-size: 3.0rem;
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
 }
 
 .categorias-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; /* Centraliza as categorias na linha */
-    margin-top: 20px; /* Espaçamento acima das categorias */
+    justify-content: center;
+    margin-top: 20px;
 }
 
 .categoria {
-    background-color: rgba(255, 0, 0, 0.7); /* Cor vermelha com transparência */
-    color: white; /* Cor do texto */
-    padding: 15px 20px; /* Espaçamento interno */
-    margin: 10px; /* Espaçamento externo */
-    border-radius: 5px; /* Bordas arredondadas */
-    text-align: center; /* Centraliza o texto */
-    text-decoration: none; /* Remove sublinhado do link */
-    transition: background-color 0.3s; /* Efeito de transição na cor de fundo */
+    background-color: rgba(255, 0, 0, 0.7);
+    color: white;
+    padding: 15px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s;
 }
 
 .categoria a {
     padding: 30px;
-    color: white; /* Cor do texto do link */
-    text-decoration: none; /* Remove sublinhado do link */
+    color: white;
+    text-decoration: none;
 }
 
 .categoria:hover {
-    background-color: rgba(255, 0, 0, 1); /* Cor vermelha sólida ao passar o mouse */
+    background-color: rgba(255, 0, 0, 1);
 }

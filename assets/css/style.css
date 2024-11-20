@@ -1,17 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
 html, body {
     margin: 0; 
     padding: 0;
-    font-family: 'Roboto', sans-serif; /* Usar Roboto para consistência com os cards */
+    font-family: 'Roboto', sans-serif;
     text-align: center;
-    background: linear-gradient(to bottom right, rgba(30, 30, 30, 0.9), rgba(60, 60, 60, 0.9)); /* Fundo com gradiente */
-    background-attachment: fixed; /* Mantém o fundo fixo ao rolar a página */
-    background-size: cover; /* Garante que o fundo cubra toda a área */
-    background-repeat: no-repeat; /* Evita repetição da imagem */
-    color: white; /* Cor do texto para melhor legibilidade */
-    min-height: 100vh; /* Garante que ocupe toda a altura da viewport */
+    background: linear-gradient(to bottom right, rgba(30, 30, 30, 0.9), rgba(60, 60, 60, 0.9));
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    min-height: 100vh;
 }
 
-/* Ajusta a navbar */
 #navbar {
     padding: 10px 0;
     top: 0;
@@ -21,15 +22,13 @@ html, body {
     z-index: 2;
 }
 
-/* Estilo para a navbar transparente */
 .navbar {
-    background-color: rgba(0, 0, 0, 0.5) !important; /* Adiciona uma leve transparência à navbar */
-    transition: background-color 0.3s; /* Transição */
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    transition: background-color 0.3s;
 }
 
-/* Quando Scrollar a nav muda de cor */
 .navbar-scrolled {
-    background-color: #171717 !important; /* Escurece a navbar */
+    background-color: #171717 !important;
 }
 
 .container-fluid {
@@ -42,20 +41,19 @@ html, body {
 
 .input .bi {
     position: absolute;
-    right: 20px; /* Posição à direita do input */
-    top: 50%; /* Centraliza verticalmente */
-    transform: translateY(-50%); /* Ajuste fino para centralizar */
-    color: red; /* Cor do ícone */
-    pointer-events: none; /* O ícone não captura eventos de clique */
-    transition: opacity 0.3s; /* Transição suave para o ícone */
-    opacity: 0; /* Começa invisível */
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: red;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    opacity: 0;
 }
 
 .input:focus-within .bi {
-    opacity: 1; /* Torna o ícone visível ao focar no input */
+    opacity: 1;
 }
 
-/* Estilos adicionais para o input */
 #search-input {
     border: 2px solid #da00372b;
     border-radius: 8px;
@@ -64,9 +62,8 @@ html, body {
     padding-right: 30px;
 }
 
-/* Efeito de foco */
 #search-input:focus {
-    border-color: #DA0037; /* Muda a cor da borda ao focar */
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Adiciona uma sombra */
-    outline: none; /* Remove a borda padrão do foco */
+    border-color: #DA0037;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
 }

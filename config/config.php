@@ -1,6 +1,6 @@
 <?php
- // config.php
-define('TMDB_API_KEY', '849679f956996f27d90a29bc51be2519'); // Substitua pela sua chave real
+
+define('TMDB_API_KEY', '849679f956996f27d90a29bc51be2519');
 define('TMDB_API_URL', 'https://api.themoviedb.org/3/movie');
 
 // Filmes populares

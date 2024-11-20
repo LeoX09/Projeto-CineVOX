@@ -17,12 +17,12 @@ body {
 
 /* Estilo do título h1 */
 h1 {
-    font-size: 3rem; /* Tamanho adequado para destaque, sem exagero */
+    font-size: 3rem; 
     font-weight: 500;
     color: #fff;
     text-align: center;
-    margin-top: 60px; /* Adiciona um espaçamento superior maior */
-    margin-bottom: 40px; /* Mantém o espaçamento inferior */
+    margin-top: 60px; 
+    margin-bottom: 40px; 
 }
 
 /* Estilo do container */
@@ -32,8 +32,8 @@ h1 {
 
 /* Estilo dos cards */
 .movie-card {
-    display: flex; /* Alinha os elementos lado a lado */
-    flex-direction: row; /* Direção em linha */
+    display: flex; 
+    flex-direction: row; 
     background-color: #1f1f1f;
     border: none;
     border-radius: 12px;
@@ -41,8 +41,8 @@ h1 {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
-    height: auto; /* Acompanhando o tamanho do conteúdo */
-    max-width: 100%; /* Prevenindo que ultrapasse o espaço */
+    height: auto;
+    max-width: 100%;
 }
 
 .movie-card:hover {
@@ -52,10 +52,10 @@ h1 {
 
 /* Imagem do filme */
 .movie-card img {
-    max-width: 120px; /* Define o tamanho máximo */
-    height: auto; /* Mantém proporção */
+    max-width: 120px;
+    height: auto;
     border-radius: 8px;
-    margin-right: 15px; /* Espaçamento entre a imagem e as informações */
+    margin-right: 15px;
     object-fit: cover;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
@@ -63,10 +63,10 @@ h1 {
 /* Informações do filme */
 .movie-info {
     display: flex;
-    flex-direction: column; /* Organiza as informações verticalmente */
+    flex-direction: column;
     justify-content: space-between;
     color: #fff;
-    flex: 1; /* Permite que as informações ocupem o espaço restante */
+    flex: 1;
 }
 
 /* Título do filme */
@@ -95,14 +95,14 @@ h1 {
 /* Responsividade */
 @media (max-width: 768px) {
     .movie-card {
-        flex-direction: column; /* Alinha em coluna para dispositivos menores */
+        flex-direction: column;
         align-items: center;
         text-align: center;
     }
 
     .movie-card img {
         margin-right: 0;
-        margin-bottom: 10px; /* Adiciona espaçamento abaixo da imagem */
+        margin-bottom: 10px;
     }
 
     .movie-info {

@@ -86,15 +86,15 @@ body {
 #senha {
     width: 100%;
     padding: 10px;
-    padding-right: 40px; /* Espaço para o ícone de olho */
+    padding-right: 40px; 
     box-sizing: border-box;
 }
 
 #toggle-eye {
     position: absolute;
-    right: 10px;  /* Coloca o botão no lado direito */
+    right: 10px; 
     top: 50%;
-    transform: translateY(-90%);  /* Alinha verticalmente */
+    transform: translateY(-25%);  /* Alinha verticalmente */
     background: none;
     border: none;
     cursor: pointer;
@@ -104,16 +104,4 @@ body {
 
 #eye-icon {
     font-size: 20px;
-}
-
-#toggle-eye1 {
-    position: absolute;
-    right: 10px;  /* Coloca o botão no lado direito */
-    top: 50%;
-    transform: translateY(-25%);  /* Alinha verticalmente */
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 24px;  /* Tamanho maior do ícone */
-    color: #333;
 }

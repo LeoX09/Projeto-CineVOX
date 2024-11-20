@@ -6,7 +6,7 @@ try {
     // Ativa as chaves estrangeiras no SQLite
     $pdo->exec("PRAGMA foreign_keys = ON");
 
-    // SQL para criar a tabela de usuários
+    // Cria a tabela de usuários
     $sql = "CREATE TABLE IF NOT EXISTS usuarios (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 nome TEXT NOT NULL,
@@ -16,7 +16,7 @@ try {
     $pdo->exec($sql);
     echo "Tabela 'usuarios' criada com sucesso.<br>";
 
-    // SQL para criar a tabela de favoritos com chave estrangeira user_id
+    // Cria a tabela de favoritos com chave estrangeira user_id
     $sql = "CREATE TABLE IF NOT EXISTS favoritos (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 user_id INTEGER NOT NULL,
@@ -26,7 +26,7 @@ try {
     $pdo->exec($sql);
     echo "Tabela 'favoritos' criada com sucesso.<br>";
 
-    // SQL para criar a tabela de comentários com chaves estrangeiras
+    // Cria a tabela de comentários com chaves estrangeiras
     $sql = "CREATE TABLE IF NOT EXISTS comentarios (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 user_id INTEGER NOT NULL,

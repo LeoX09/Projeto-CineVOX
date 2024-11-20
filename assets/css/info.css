@@ -1,5 +1,5 @@
-/* Resetando margens e paddings */
-* {
+
+    * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -39,7 +39,7 @@ h2 {
 .poster {
     width: 320px; /* Tamanho inicial do pôster */
     height: auto;
-    object-fit: cover; /* Ajusta a imagem sem distorcer */
+    object-fit: cover;
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
 }
@@ -48,14 +48,14 @@ h2 {
 .movie-details {
     flex: 1;
     padding: 10px;
-    color: #f5f5f5; /* Aumentando o contraste nas palavras */
+    color: #f5f5f5;
 }
 
 /* Título do filme */
 .movie-details h1 {
     font-size: 2.5rem;
     margin-bottom: 20px;
-    color: #ffffff; /* Mais contraste no título */
+    color: #ffffff; 
 }
 
 /* Informações do diretor e imagem */
@@ -102,7 +102,8 @@ h2 {
 }
 
 .streaming-providers img {
-    width: 40px; /* Reduzindo o tamanho das imagens dos provedores */
+    width: 40px;
+    border-radius: 50%;
     margin-right: 10px;
 }
 
@@ -117,24 +118,24 @@ h2 {
 /* Trailer */
 .trailer-iframe {
     width: 100%;
-    height: 600px; /* Reduzindo a altura do trailer */
+    height: 600px;
     margin-top: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
-    object-fit: cover; /* Ajustando o trailer sem distorcer */
+    object-fit: cover;
 }
 
 /* Ajusta o layout da sidebar */
 .sidebar {
-    width: 100%; /* A sidebar agora ocupa toda a largura */
+    width: 100%;
     background-color: rgba(0, 0, 0, 0.8);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
     max-height: 80vh;
     overflow-y: auto;
-    margin-top: 30px; /* Distância do topo */
-    margin-left: 0; /* Não há mais a necessidade de margem direita */
+    margin-top: 30px;
+    margin-left: 0;
 }
 
 /* Ajusta a disposição dos atores */
@@ -142,14 +143,13 @@ h2 {
     display: flex;
     flex-wrap: nowrap; /* Impede que quebrem para uma nova linha */
     gap: 5px;
-    justify-content: flex-start; /* Garante que fiquem alinhados à esquerda */
-    overflow-x: auto; /* Adiciona rolagem horizontal se necessário */
+    justify-content: flex-start;
+    overflow-x: auto;
 }
 
-/* Ajusta os detalhes dos atores */
 .actor {
     text-align: center;
-    flex: 1 0 20%; /* Faz os atores ficarem lado a lado, com um mínimo de 20% de largura */
+    flex: 1 0 10%;
 }
 
 .actor img {
@@ -166,7 +166,7 @@ h2 {
 
 /* Ajusta o layout do container principal para deixar espaço para a sidebar */
 .container {
-    margin-right: 0; /* Não precisa mais de espaço para a sidebar */
+    margin-right: 0;
 }
 
 
@@ -184,12 +184,13 @@ h2 {
 }
 
 .comment p {
+    color:#f0f0f0;
     margin-bottom: 10px;
 }
 
 .comment p span {
     font-size: 0.9rem;
-    color: #bbb;
+    color: #fffefe;
 }
 
 .comment strong {
@@ -232,12 +233,12 @@ form button:hover {
 /* Responsividade */
 @media (max-width: 768px) {
     .movie-info {
-        flex-direction: column; /* Empilha os elementos em telas pequenas */
+        flex-direction: column;
         align-items: center;
     }
 
     .poster {
-        width: 150px; /* Reduzindo o tamanho do pôster em telas menores */
+        width: 150px;
         height: auto;
     }
 
@@ -252,7 +253,7 @@ form button:hover {
     }
 
     .trailer-iframe {
-        height: 250px; /* Reduzindo a altura do trailer em telas pequenas */
+        height: 250px;
     }
 
     .cast {
@@ -260,11 +261,11 @@ form button:hover {
     }
 
     .actor {
-        width: 80px; /* Reduzindo o tamanho das imagens dos atores */
+        width: 80px; 
     }
 
     .sidebar {
-        position: static; /* A sidebar deixa de ser fixa */
+        position: static;
         width: 100%;
         margin-top: 20px;
     }
@@ -283,56 +284,56 @@ form button:hover {
 @media (max-width: 480px) {
     /* Ajusta o tamanho da fonte do título do filme */
     .movie-details h1 {
-        font-size: 1.8rem; /* Reduz o tamanho da fonte */
+        font-size: 1.8rem;
     }
 
     /* Ajusta o tamanho do pôster */
     .poster {
-        width: 120px; /* Menor tamanho do pôster */
+        width: 120px; 
         height: auto;
     }
 
     /* Ajusta a posição do trailer */
     .trailer-iframe {
-        height: 200px; /* Menor altura do trailer */
+        height: 200px;
     }
 
     /* Ajusta os detalhes dos atores */
     .actor {
-        width: 60px; /* Reduz ainda mais a largura dos atores */
+        width: 60px;
     }
 
     /* Ajusta o layout da sidebar para telas muito pequenas */
     .sidebar {
-        width: 100%; /* A sidebar ocupa toda a largura */
-        margin-top: 10px; /* Diminui a margem superior */
-        padding: 10px; /* Reduz o padding */
+        width: 100%;
+        margin-top: 10px; 
+        padding: 10px; 
     }
 
     /* Ajusta a exibição dos comentários */
     .comment {
-        padding: 10px; /* Menos padding */
+        padding: 10px; 
     }
 
     /* Ajusta o formulário de comentário */
     form textarea {
-        font-size: 0.9rem; /* Diminui a fonte */
+        font-size: 0.9rem;
     }
 
     /* Botões na seção de comentários */
     form button {
-        width: 120px; /* Botão mais estreito */
+        width: 120px; 
     }
 
     /* Ajuste na área de filmes para telas menores */
     .movie-info {
-        flex-direction: column; /* Empilha os elementos */
+        flex-direction: column; 
         align-items: center;
-        gap: 20px; /* Menos espaço entre os itens */
+        gap: 20px; 
     }
 
     /* Ajuste na seção de comentários */
     .comments-section {
-        margin-top: 20px; /* Menos espaço entre comentários */
+        margin-top: 20px; 
     }
 }

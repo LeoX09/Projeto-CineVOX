@@ -72,7 +72,6 @@ if (isset($_GET['id'])) {
 
                 <div class="buttons">
                     <button class="favorite-btn" onclick="adicionarFavorito(<?php echo $id_filme; ?>)">Favoritar</button>
-                    <button class="watch-later-btn">Ver depois</button>
                 </div>
 
                 <!-- Provedores de streaming -->
