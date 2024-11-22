@@ -1,6 +1,12 @@
 CineVOX
 Sua plataforma de filmes personalizada.
 
+Equipe:
+Leandro Isaias Batista da Silva
+Luiz Felipe Araújo dos Santos
+Luiz José Araújo do Nascimento Neto
+Kayck Henry de Lima Assunção
+
 Introdução:
 O CINEVOX é um projeto de gerenciamento e exibição de informações de filmes que permite aos usuários:
     • Explorar filmes populares e categorias específicas.
