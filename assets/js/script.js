@@ -1,34 +1,33 @@
 // Função para buscar filmes na API do TMDB
 function searchMovies() {
-    const query = document.getElementById('search-input').value;
+    const query = $('#search-input').val();
     if (!query) return;
 
     const apiUrl = `https://api.themoviedb.org/3/search/movie?api_key=849679f956996f27d90a29bc51be2519&query=${encodeURIComponent(query)}&language=pt-BR`;
 
-    fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => {
-            const resultsContainer = document.getElementById('search-results');
-            resultsContainer.innerHTML = ''; // Limpa os resultados anteriores
+    $.get(apiUrl, function(data) {
+        const resultsContainer = $('#search-results');
+        resultsContainer.empty(); // Limpa os resultados anteriores
 
-            if (data.results.length === 0) {
-                resultsContainer.innerHTML = '<p>Nenhum filme encontrado.</p>';
-                return;
-            }   
+        if (data.results.length === 0) {
+            resultsContainer.html('<p>Nenhum filme encontrado.</p>');
+            return;
+        }
 
-            data.results.forEach(movie => {
-                const movieCard = document.createElement('div');
-                movieCard.classList.add('movie-card');
-                movieCard.innerHTML = `
+        data.results.forEach(movie => {
+            const movieCard = $(`
+                <div class="movie-card">
                     <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
                     <h3>${movie.title}</h3>
                     <p>Nota: ${movie.vote_average}</p>
-                    <button onclick="rateMovie('${movie.id}', '${movie.title}')">Avaliar</button>
-                `;
-                resultsContainer.appendChild(movieCard);
-            });
-        })
-        .catch(error => console.error('Erro ao buscar filmes:', error));
+                    <button class="rate-movie-btn" data-id="${movie.id}" data-title="${movie.title}">Avaliar</button>
+                </div>
+            `);
+            resultsContainer.append(movieCard);
+        });
+    }).fail(function(error) {
+        console.error('Erro ao buscar filmes:', error);
+    });
 }
 
 // Função para detectar a tecla Enter e iniciar a pesquisa
@@ -44,24 +43,33 @@ function rateMovie(movieId, movieTitle) {
     // Lógica para avaliar o filme aqui
 }
 
-// Função para escurecer a navbar ao rolar
-window.onscroll = function() {
-    const navbar = document.getElementById('navbar');
-    if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-        navbar.classList.add('navbar-scrolled'); // Adiciona classe para escurecer
+// Escurecer a navbar ao rolar
+$(window).on('scroll', function() {
+    const navbar = $('#navbar');
+    if ($(document).scrollTop() > 50) {
+        navbar.addClass('navbar-scrolled'); // Adiciona classe para escurecer
     } else {
-        navbar.classList.remove('navbar-scrolled'); // Remove classe
+        navbar.removeClass('navbar-scrolled'); // Remove classe
     }
-};
+});
 
+// Adicionar favorito
 function adicionarFavorito(movieId) {
     $.post('../scripts/adicionar_favoritos.php', { movie_id: movieId }, function(response) {
         alert(response);
     });
 }
 
+// Remover favorito
 function removerFavorito(movieId) {
     $.post('../scripts/remover_favoritos.php', { movie_id: movieId }, function(response) {
         alert(response);
     });
 }
+
+// Event listener para botão de avaliar
+$(document).on('click', '.rate-movie-btn', function() {
+    const movieId = $(this).data('id');
+    const movieTitle = $(this).data('title');
+    rateMovie(movieId, movieTitle);
+});

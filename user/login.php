@@ -7,7 +7,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 try {
-    // Verificar se a conexão com o banco de dados está funcionando
+    // Verificação se o bd está funcionando
     if (!$pdo) {
         throw new Exception("Falha na conexão com o banco de dados.");
     }
@@ -34,7 +34,7 @@ try {
 
             // Redirecionar para a página principal
             header("Location: ../public/index.php");
-            exit(); // Encerrar o script após o redirecionamento
+            exit();
         } else {
             $error_message = "Email ou senha inválidos.";
         }
@@ -45,6 +45,7 @@ try {
     $error_message = $e->getMessage();
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -93,7 +94,10 @@ try {
 
         <p><a href="../user/registro.php">Registrar-se</a></p>
     </div>
-
+    
+    <script src="../assets/js/toggleye.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="../vendor/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

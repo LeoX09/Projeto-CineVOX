@@ -13,7 +13,7 @@
 
 <body>
     <?php
-    // Inclui o arquivo de configuração do banco de dados
+    
     require_once '../config/db_config.php';
 
     // Verifica se o formulário foi enviado
